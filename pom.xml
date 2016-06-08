@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>TestJ2SE</module>
+        <module>J2SE</module>
     </modules>
 
 
