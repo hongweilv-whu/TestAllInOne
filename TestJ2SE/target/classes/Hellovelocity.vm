@@ -1,0 +1,14 @@
+#set( $iAmVariable = "good!" )
+Welcome ${name}-whu.sres to velocity.com
+today is $date.
+#foreach ($i in $list)
+    $i
+#end
+
+something about person object:
+the id is : ${person.id}
+the name is : ${person.name}
+the age is : ${person.age}
+the birthday is : ${person.birthday}
+
+$iAmVariable
