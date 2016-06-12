@@ -1,0 +1,14 @@
+2016-06-13 at 00:21:47 CST TRACE log4j2.TestLog4j2 15 main - Enter
+2016-06-13 at 00:21:47 CST ERROR log4j2.TestLog4j2 16 main - Did it again!
+2016-06-13 at 00:21:47 CST INFO  log4j2.TestLog4j2 17 main - 我是info信息
+2016-06-13 at 00:21:47 CST DEBUG log4j2.TestLog4j2 18 main - 我是debug信息
+2016-06-13 at 00:21:47 CST WARN  log4j2.TestLog4j2 19 main - 我是warn信息
+2016-06-13 at 00:21:47 CST FATAL log4j2.TestLog4j2 20 main - 我是fatal信息
+2016-06-13 at 00:21:47 CST DEBUG log4j2.TestLog4j2 21 main - 我是debug信息
+2016-06-13 at 00:21:47 CST TRACE log4j2.TestLog4j2 22 main - Exit
+2016-06-13 at 01:03:12 CST INFO  slf4j.TestSlf4j 14 main - hongwei info message.
+2016-06-13 at 01:03:12 CST DEBUG slf4j.TestSlf4j 15 main - hongwei debug message.
+2016-06-13 at 01:03:12 CST ERROR slf4j.TestSlf4j 16 main - hongwei error message.
+2016-06-13 at 01:03:52 CST INFO  slf4j.TestSlf4j 14 main - hongwei info message.
+2016-06-13 at 01:03:52 CST DEBUG slf4j.TestSlf4j 15 main - hongwei debug message.
+2016-06-13 at 01:03:52 CST ERROR slf4j.TestSlf4j 16 main - hongwei error message.

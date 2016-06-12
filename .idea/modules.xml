@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/TestAllInOne.iml" filepath="$PROJECT_DIR$/TestAllInOne.iml" />
       <module fileurl="file://$PROJECT_DIR$/TestArch-Spring/TestArch-Spring.iml" filepath="$PROJECT_DIR$/TestArch-Spring/TestArch-Spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/TestJ2SE/TestJ2SE.iml" filepath="$PROJECT_DIR$/TestJ2SE/TestJ2SE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TestLog/TestLog.iml" filepath="$PROJECT_DIR$/TestLog/TestLog.iml" />
     </modules>
   </component>
 </project>

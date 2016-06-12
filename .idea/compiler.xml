@@ -17,19 +17,33 @@
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
-      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+      <profile default="false" name="Annotation profile for TestJ2SE" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="TestJ2SE" />
+      </profile>
+      <profile default="false" name="Annotation profile for TestArch-Spring" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="TestArch-Spring" />
-        <module name="TestJ2SE" />
+      </profile>
+      <profile default="false" name="Annotation profile for TestLog" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="TestLog" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="TestAllInOne" target="1.8" />
       <module name="TestArch-Spring" target="1.8" />
       <module name="TestJ2SE" target="1.8" />
+      <module name="TestLog" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
