@@ -22,11 +22,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="TestArch-Spring" />
         <module name="TestJ2SE" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="TestAllInOne" target="1.8" />
+      <module name="TestArch-Spring" target="1.8" />
       <module name="TestJ2SE" target="1.8" />
     </bytecodeTargetLevel>
   </component>

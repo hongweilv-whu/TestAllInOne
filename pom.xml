@@ -11,6 +11,7 @@
     <modules>
         <module>TestJ2SE</module>
         <module>J2SE</module>
+        <module>TestArch-Spring</module>
     </modules>
 
 
