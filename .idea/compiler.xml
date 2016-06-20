@@ -38,12 +38,20 @@
         <processorPath useClasspath="true" />
         <module name="TestLog" />
       </profile>
+      <profile default="false" name="Annotation profile for TestSpringMVC" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="TestSpringMVC" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="TestAllInOne" target="1.8" />
       <module name="TestArch-Spring" target="1.8" />
       <module name="TestJ2SE" target="1.8" />
       <module name="TestLog" target="1.8" />
+      <module name="TestSpringMVC" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
