@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-=======
+import org.apache.commons.lang.StringUtils;
+
 import java.io.IOException;
->>>>>>> 932ad299831663b96cb945cb8c2e7da69cc33fe9
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +13,10 @@ public class TestClient {
         String name = null;
         //System.out.println(name.equals("hongwei"));
         System.out.println("hongwei".equals(name));
+
+        String value = "  ";
+        value = StringUtils.trim(value);
+        System.out.println(value);
 
         List<Integer> list = Arrays.asList(1, 2, 2, 4);
 
