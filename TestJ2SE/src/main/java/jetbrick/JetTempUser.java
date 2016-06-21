@@ -18,10 +18,9 @@ public class JetTempUser {
         List<User> users = Arrays.asList(
                 new User("张三", "zhangsan@qq.com"),
                 new User("李四", "lisi@qq.com"),
-                new User("王五", "wangwu@qq.com")
-        );
+                new User("王五", "wangwu@qq.com"));
 
-        // 1. 创建一个默认的 JetEngine
+        // 1. 创建一个默认的 JetEngin
         JetEngine engine = JetEngine.create();
 
         // 2. 获取一个模板对象 (从默认的 classpath 下面)
