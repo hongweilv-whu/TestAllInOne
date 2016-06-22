@@ -8,9 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>TestSpringMVC</title>
+    <title>HelloWorldController Test</title>
 </head>
 <body>
     ${greeting}
+    by:${author}
 </body>
 </html>

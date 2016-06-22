@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import pojos.Message;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,14 +15,15 @@ import java.util.List;
  * 查询服务控制器
  * Created by lvhw on 2016/6/20.
  */
-@Controller
-/*@RequestMapping(value = "/queryData")*/
+@RestController
+@RequestMapping(value = "/")
 public class QueryServiceController {
 
-    @RequestMapping(value = "/hello")
-    public String hello(Model model){
-        model.addAttribute("greeting", "fxiaoke.com");
-        return "springmvctesthello";
+    @RequestMapping(value = "/queryData")
+    public Message queryData(String sql, Integer ei, String verifyInfo){
+
+        Message msg = new Message("test", "this is a test message!");
+        return msg;
     }
 
 /*    @RequestMapping(value = "requestParam")
