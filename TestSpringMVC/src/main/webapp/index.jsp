@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Hello World!SpringTest</h2>
+<h2>SpringMVC-Test</h2>
 </body>
 </html>

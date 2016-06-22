@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping(value = "/common")
+@RequestMapping(value = "/view")
 public class HelloWorldController {
 
     @RequestMapping(value = "/hello")

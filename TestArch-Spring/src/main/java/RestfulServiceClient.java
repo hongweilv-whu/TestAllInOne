@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class RestfulServiceClient {
     public static void main(String[] args) {
-        String urlStr = "http://localhost:8080/queryData";
+        String urlStr = "http://localhost:8080/queryDataSet?sql=select%20*%20&entId=1&verify=data";
 
         BufferedReader in = null;
         String result = "";

@@ -7,12 +7,13 @@
 
     <context:component-scan base-package="controllers" />
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" >
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            </list>
+        </property>
 
-
-    <!--默认-->
-<!--    <context:component-scan base-package="controllers"/>
-    <mvc:default-servlet-handler/>
-    <mvc:annotation-driven/>-->
+    </bean>
 
 </beans>
