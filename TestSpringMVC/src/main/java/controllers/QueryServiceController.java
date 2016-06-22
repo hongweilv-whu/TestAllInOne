@@ -1,15 +1,8 @@
 package controllers;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import pojos.Message;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * 查询服务控制器
@@ -19,8 +12,9 @@ import java.util.List;
 @RequestMapping(value = "/")
 public class QueryServiceController {
 
+
     @RequestMapping(value = "/queryData")
-    public Message queryData(String sql, Integer ei, String verifyInfo){
+    public @ResponseBody Message queryData(String sql, Integer ei, String verifyInfo){
 
         Message msg = new Message("test", "this is a test message!");
         return msg;
