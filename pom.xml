@@ -13,6 +13,9 @@
         <module>TestArch-Spring</module>
         <module>TestLog</module>
         <module>TestSpringMVC</module>
+        <module>TestJUnit</module>
+        <module>TestCSV</module>
+        <module>TestPOIExcel</module>
     </modules>
 
     <properties>
@@ -79,6 +82,12 @@
             <version>2.5.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 

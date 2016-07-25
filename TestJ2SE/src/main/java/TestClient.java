@@ -1,16 +1,37 @@
 import org.apache.commons.lang.StringUtils;
+import org.springframework.expression.spel.ast.InlineMap;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by lvhw on 2016/6/11.
  */
 public class TestClient {
     public static void main(String[] args) {
-        String name = null;
+
+        List<String> listStr = new ArrayList<>();
+        listStr.add("lvhongwei");
+        listStr.add("xiongzhiyan");
+        listStr.add("yanwen");
+        listStr.add("msheng");
+        System.out.println(listStr);
+
+        for (Iterator<String> listiter = listStr.iterator(); listiter.hasNext(); ) {
+            if ("xiongzhiyan".equals(listiter.next()))
+                listiter.remove();
+        }
+
+        System.out.println(listStr);
+
+        Map<String, String> map = new HashMap<>();
+
+        // modify by lvhw on 2016/7/24 15:53
+
+        // end modify
+
+
+       /* String name = null;
         //System.out.println(name.equals("hongwei"));
         System.out.println("hongwei".equals(name));
 
@@ -43,6 +64,6 @@ public class TestClient {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }
