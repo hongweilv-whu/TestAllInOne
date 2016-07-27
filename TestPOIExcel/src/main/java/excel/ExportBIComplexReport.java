@@ -243,56 +243,48 @@ public class ExportBIComplexReport {
                 }
             } else {
 
-                // 另起一组的记录
-                for (int tt = groupFieldSize - 1; 0 <= tt; tt--) {
+                // 判断该组是否是汇总记录
+                String lastGroupFieldValue = oneRecord.get(groupFields.get(groupFieldSize - 1)).toString();
+                if (StringUtils.isNotEmpty(lastGroupFieldValue)) {
 
-                    List<String> lessOneValues = new ArrayList<>();
-                    for (int mm = tt; 0 <= mm; mm--) {
-                        lessOneValues.add(0, oneRecord.get(groupFields.get(mm)).toString());
+                    for (int tt = groupFieldSize - 1; 0 <= tt; tt--) {
+
+                        List<String> lessOneValues = new ArrayList<>();
+                        for (int mm = tt; 0 <= mm; mm--) {
+                            lessOneValues.add(0, oneRecord.get(groupFields.get(mm)).toString());
+                        }
+                        String lessValues = Joiner.on(",").join(lessOneValues);
+
+                        // 不等，表明该字段另起分组
+                        if (!StringUtils.startsWith(groupFieldValues, lessValues)) {
+                            int startIdx = grpItemStartIdxs[tt];
+                            int itemCount = grpItemCounts[tt];
+                            this.addOneGroupFieldMergedRegion(sheet, startIdx, itemCount, tt);
+
+                            // 合并总计类单元格，从分组字段往后全部合并
+                            // 无法克服的缺点：对单行多列合并单元格后，现在中间某列设置，无法实现
+                            this.addAllAggregationFieldMergedRegion(sheet, startIdx, itemCount, sumStyle);
+
+                            grpItemStartIdxs[tt] = rowIndex;
+                            grpItemCounts[tt] = 1;
+                        } else {
+                            // 分组字段合并个数增1
+                            grpItemCounts[tt] = (++grpItemCounts[tt]);
+                        }
                     }
-                    String lessValues = Joiner.on(",").join(lessOneValues);
 
-                    // 不等，表明该字段另起分组
-                    if (!StringUtils.contains(groupFieldValues, lessValues)) {
-                        int startIdx = grpItemStartIdxs[tt];
-                        int itemCount = grpItemCounts[tt];
-                        this.addOneGroupFieldMergedRegion(sheet, startIdx, itemCount, tt);
+                    // 赋予新的值，即新的分组，继续后续比较
+                    List<String> newValues = new ArrayList<>();
+                    for (int t = 0; t < groupFieldSize; t++) {
+                        newValues.add(oneRecord.get(groupFields.get(t)).toString());
+                    }
+                    groupFieldValues = Joiner.on(",").join(newValues);
 
-                        // 合并总计类单元格，从分组字段往后全部合并
-                        // 无法克服的缺点：对单行多列合并单元格后，现在中间某列设置，无法实现
-                        /*int columnStartIndex = aggregationFieldIndex.get(aggregationFields.get(0));
-                        sheet.addMergedRegion(new CellRangeAddress(startIdx + itemCount - 1,
-                                startIdx + itemCount - 1, columnStartIndex, headList.size() - 1));*/
-
-
-                        //this.addAllAggregationFieldMergedRegion(sheet, startIdx, itemCount, sumStyle);
-                       /* HSSFRow rowSum = sheet.createRow(rowIndex - 1);
-                        Map<String, Object> sumRecord = dataList.get(rowIndex - 2);
-                        this.createCell(rowSum, columnStartIndex, sumRecord.get(aggregationFields.get(0)), leftStyle);*/
-
-                        /*for (int g = 0, size = aggregationFields.size(); g < size; g++) {
-                            int columnStartIndex = aggregationFieldIndex.get(aggregationFields.get(g));
-                            int columnEndIndex = headList.size() - 1;
-                            //int curRowIndex = startIndex + rowCount - (size - g);
-                            int columnStartIndex = startIdx + itemCount - (size - g);
-                            this.createCell(rowSum, columnStartIndex, sumRecord.get(aggregationFields.get(0)), leftStyle);
-                        }*/
-
-
-                        grpItemStartIdxs[tt] = rowIndex;
-                        grpItemCounts[tt] = 1;
-                    } else {
-                        // 分组字段合并个数增1
+                } else {
+                    for (int tt = groupFieldSize - 1; 0 <= tt; tt--) {
                         grpItemCounts[tt] = (++grpItemCounts[tt]);
                     }
                 }
-
-                // 赋予新的值，即新的分组，继续后续比较
-                List<String> newValues = new ArrayList<>();
-                for (int t = 0; t < groupFieldSize; t++) {
-                    newValues.add(oneRecord.get(groupFields.get(t)).toString());
-                }
-                groupFieldValues = Joiner.on(",").join(newValues);
             }
         }
 
@@ -301,10 +293,8 @@ public class ExportBIComplexReport {
             int startIdx = grpItemStartIdxs[tt];
             int itemCount = grpItemCounts[tt];
             this.addOneGroupFieldMergedRegion(sheet, startIdx, itemCount, tt);
-            //this.addOneGroupFieldMergedRegion(sheet, grpItemStartIdxs[tt], grpItemCounts[tt], tt);
 
-
-            //this.addAllAggregationFieldMergedRegion(sheet, startIdx, itemCount, sumStyle);
+            this.addAllAggregationFieldMergedRegion(sheet, startIdx, itemCount, sumStyle);
         }
 
         try {
@@ -351,7 +341,7 @@ public class ExportBIComplexReport {
                         columnStartIndex, columnEndIndex));*/
 
             HSSFRow sumRow = sheet.getRow(curRowIndex);
-            for (int i=groupFieldSize; i<headList.size(); i++){
+            for (int i = groupFieldSize; i < headList.size(); i++) {
                 sumRow.getCell(i).setCellStyle(sumStyle);
             }
             /*// 合并该聚合字段之前，分组字段之后的单元格
