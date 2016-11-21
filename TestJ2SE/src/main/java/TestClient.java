@@ -1,14 +1,21 @@
+import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.expression.spel.ast.InlineMap;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by lvhw on 2016/6/11.
  */
 public class TestClient {
     public static void main(String[] args) {
+
+        /*List<String> target = Lists.newArrayList();
+        List<String> src = null;
+
+        System.out.println("------" + target.addAll(src));
 
         List<String> listStr = new ArrayList<>();
         listStr.add("lvhongwei");
@@ -25,7 +32,7 @@ public class TestClient {
         System.out.println(listStr);
 
         Map<String, String> map = new HashMap<>();
-
+*/
         // modify by lvhw on 2016/7/24 15:53
 
         // end modify
@@ -64,6 +71,17 @@ public class TestClient {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }*/
+
+
+
+        int[][] results = new int[][]{{10, 20, 30},{10, 22, 29},{12, 18, 32}};
+        List originList = Arrays.asList(results);
+        System.out.println("originList" + originList);
+        //List<Integer> list = Arrays.stream(results).map(a->a[1]).collect(Collectors.toList());
+
+        /*for (int[] result : results) {
+            System.out.println("list---" + Arrays.toString(result));
         }*/
     }
 }

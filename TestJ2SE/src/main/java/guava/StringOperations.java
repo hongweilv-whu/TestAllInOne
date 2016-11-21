@@ -2,8 +2,9 @@ package guava;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang.StringUtils;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +25,11 @@ public class StringOperations {
         System.out.println(result2);
 
 
+        List<String> list1 = new ArrayList<>();
+
+        System.out.println("-----------------");
+        System.out.println(Joiner.on(", ").skipNulls().join(list1));
+        System.out.println(StringUtils.isEmpty(Joiner.on(", ").skipNulls().join(list1)));
 
     }
 }

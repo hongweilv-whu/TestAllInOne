@@ -1,5 +1,8 @@
 package lambda;
 
+import org.apache.commons.lang.StringUtils;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -17,7 +20,7 @@ public class LambdaForListClient {
 
         List<String> players = Arrays.asList(atp);
         
-/*        //foreach遍历
+        //foreach遍历
         for (String player : players){
             System.out.println(player + ",");
         }
@@ -26,9 +29,19 @@ public class LambdaForListClient {
         //lambda表达式及函数操作（Function Operation）
         players.forEach((player)->System.out.println(player + ","));
 
-        System.out.println("----------------------------------------");*/
+        System.out.println("----------------------------------------");
         //双冒号操作符--效果不一致了！！！
         players.forEach(System.out::println);
+
+        System.out.println("------before-----");
+        System.out.println(Arrays.asList(atp));
+
+        Arrays.sort(atp, (String s1, String s2)->s1.compareTo(s2));
+        System.out.println("------after-----");
+        System.out.println(Arrays.asList(atp));
+
+
+
 
 //        Arrays.sort(atp, new Comparator<String>() {
 //            @Override

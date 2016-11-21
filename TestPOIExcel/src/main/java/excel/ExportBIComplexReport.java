@@ -243,9 +243,25 @@ public class ExportBIComplexReport {
                 }
             } else {
 
-                // 判断该组是否是汇总记录
-                String lastGroupFieldValue = oneRecord.get(groupFields.get(groupFieldSize - 1)).toString();
-                if (StringUtils.isNotEmpty(lastGroupFieldValue)) {
+                // 判断该组是否是汇总记录，所有的分组字段的值都为空
+                boolean isAllGroupFieldValueNull = true;
+                for (String groupField : groupFields) {
+                    String fieldValue = oneRecord.get(groupField).toString();
+                    if (StringUtils.isNotEmpty(fieldValue)){
+                        isAllGroupFieldValueNull = false;
+                        break;
+                    }
+                }
+                //String lastGroupFieldValue = oneRecord.get(groupFields.get(groupFieldSize - 1)).toString();
+                //if (StringUtils.isNotEmpty(lastGroupFieldValue)) {
+
+                // 全部为空，是汇总数据
+                if (isAllGroupFieldValueNull){
+                    for (int tt = groupFieldSize - 1; 0 <= tt; tt--) {
+                        grpItemCounts[tt] = (++grpItemCounts[tt]);
+                    }
+
+                } else {
 
                     for (int tt = groupFieldSize - 1; 0 <= tt; tt--) {
 
@@ -255,8 +271,8 @@ public class ExportBIComplexReport {
                         }
                         String lessValues = Joiner.on(",").join(lessOneValues);
 
-                        // 不等，表明该字段另起分组
-                        if (!StringUtils.startsWith(groupFieldValues, lessValues)) {
+                        String lastGrpFieldValue = oneRecord.get(groupFields.get(tt)).toString();
+                        if (StringUtils.isEmpty(lastGrpFieldValue)){
                             int startIdx = grpItemStartIdxs[tt];
                             int itemCount = grpItemCounts[tt];
                             this.addOneGroupFieldMergedRegion(sheet, startIdx, itemCount, tt);
@@ -267,9 +283,24 @@ public class ExportBIComplexReport {
 
                             grpItemStartIdxs[tt] = rowIndex;
                             grpItemCounts[tt] = 1;
-                        } else {
-                            // 分组字段合并个数增1
-                            grpItemCounts[tt] = (++grpItemCounts[tt]);
+
+                        }else {
+                            // 不等，表明该字段另起分组
+                            if (!StringUtils.startsWith(groupFieldValues, lessValues)) {
+                                int startIdx = grpItemStartIdxs[tt];
+                                int itemCount = grpItemCounts[tt];
+                                this.addOneGroupFieldMergedRegion(sheet, startIdx, itemCount, tt);
+
+                                // 合并总计类单元格，从分组字段往后全部合并
+                                // 无法克服的缺点：对单行多列合并单元格后，现在中间某列设置，无法实现
+                                this.addAllAggregationFieldMergedRegion(sheet, startIdx, itemCount, sumStyle);
+
+                                grpItemStartIdxs[tt] = rowIndex;
+                                grpItemCounts[tt] = 1;
+                            } else {
+                                // 分组字段合并个数增1
+                                grpItemCounts[tt] = (++grpItemCounts[tt]);
+                            }
                         }
                     }
 
@@ -279,11 +310,6 @@ public class ExportBIComplexReport {
                         newValues.add(oneRecord.get(groupFields.get(t)).toString());
                     }
                     groupFieldValues = Joiner.on(",").join(newValues);
-
-                } else {
-                    for (int tt = groupFieldSize - 1; 0 <= tt; tt--) {
-                        grpItemCounts[tt] = (++grpItemCounts[tt]);
-                    }
                 }
             }
         }
