@@ -1,6 +1,7 @@
 package controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,5 +37,20 @@ public class QueryServiceController {
         System.out.println("sql:" + sql + ", entId:" + entId + ", verify:" + verify);
 
         return Arrays.asList(sql, String.valueOf(entId), verify);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/queryDataSet/json")//queryData2前面的'/'可有可无，后面的必需
+    List<String> getAllListJson(@RequestBody(required = true) ExpJobProgress progress){
+        String jobId = progress.getJobId();
+        int status = progress.getStatus();
+        String msg = progress.getMsg();
+        String dataSize = progress.getDataSize();
+        String resultUrl = progress.getResultUrl();
+
+        System.out.println("jobId:" + jobId + ", status:" + status +
+                ", msg:" + msg + ", dataSize:" + dataSize + ", resultUrl:" + resultUrl);
+
+        return Arrays.asList(jobId, String.valueOf(status), msg);
     }
 }

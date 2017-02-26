@@ -63,9 +63,9 @@ public class BankAccount {
      * 静态嵌套类，权限类
      */
     public static class Permissions {
-        public boolean canDeposit;
-        public boolean canWithdraw;
-        public boolean canClose;
+        private boolean canDeposit;
+        private boolean canWithdraw;
+        private boolean canClose;
 
         public String printAccountInfo(BankAccount account) {
             return "account number is:" + account.number + ", and current balance is:" + account.balance;

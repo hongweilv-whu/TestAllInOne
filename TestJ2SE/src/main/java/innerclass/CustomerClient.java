@@ -13,6 +13,7 @@ public class CustomerClient {
         Person lvhw = new Person("lv", "hongwei", "engineer", "man", 28, 10000);
         BankAccount.Permissions perm = account.permissionsFor(lvhw);
 
+
         String accountInfo = perm.printAccountInfo(account);
         System.out.println(accountInfo);
     }

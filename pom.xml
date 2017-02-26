@@ -16,6 +16,7 @@
         <module>TestJUnit</module>
         <module>TestCSV</module>
         <module>TestPOIExcel</module>
+        <module>TestAlgorithm</module>
     </modules>
 
     <properties>
